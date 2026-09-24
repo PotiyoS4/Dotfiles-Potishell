@@ -269,7 +269,11 @@ for i = 1, 10 do
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
-
+--Resize window with arrows
+hl.bind(mainMod .. " + ALT + up", hl.dsp.window.resize({ x = 0, y = -10, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + ALT + right", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + ALT + left", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + ALT + down", hl.dsp.window.resize({ x = 0, y = 10, relative = true }), { repeating = true })
 -- Example special workspace (scratchpad)
 hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
@@ -317,6 +321,8 @@ hl.bind(
 	"Print",
 	hl.dsp.exec_cmd('grim - | satty -f - --copy-command wl-copy -o "~/Pictures/Screenshots/%Y%m%d_%H%M%S.png"')
 )
+--btop
+hl.bind("CONTROL + SHIFT + ESCAPE", hl.dsp.exec_cmd("kitty --class=btopstart -e btop"))
 
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
@@ -411,5 +417,10 @@ hl.window_rule({
 --yazi explorer windowrule
 hl.window_rule({
 	match = { class = "^(yazirule)$" },
+	float = false,
+})
+
+hl.window_rule({
+	match = { class = "^(btopstart)$" },
 	float = false,
 })
