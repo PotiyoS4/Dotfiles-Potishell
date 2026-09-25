@@ -35,6 +35,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprpaper &")
 	hl.exec_cmd("kitty --class=cava-mod -e cava")
 	hl.exec_cmd("kitty --class=ttyclock -e tty-clock -S -x -c -n -C 5")
+	hl.exec_cmd("kitty -e udiskie")
 end)
 
 -------------------------------

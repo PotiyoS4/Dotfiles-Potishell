@@ -882,4 +882,12 @@ exts = [
 	{ name = "graphql", text = "", fg = "#f38ba8" },
 	{ name = "cmake", text = "", fg = "#cdd6f4" },
 ]
+[opener]
+keepassxc = [
+   {run = 'keepassxc "$1"', orphan = true, desc = "open with keepass"}
+]
 
+[open]
+prepend_rules = [
+  {url = "*.kdbx", use = "keepassxc"}
+]
