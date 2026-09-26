@@ -30,12 +30,10 @@ local browser = "zen-browser"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function()
-	hl.exec_cmd(terminal)
+	hl.exec_cmd("kitty --class=kittypres")
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("hyprpaper &")
-	hl.exec_cmd("kitty --class=cava-mod -e cava")
-	hl.exec_cmd("kitty --class=ttyclock -e tty-clock -S -x -c -n -C 5")
-	hl.exec_cmd("kitty -e udiskie")
+	hl.exec_cmd("qs > /dev/null 2>&1 &")
 end)
 
 -------------------------------
@@ -243,10 +241,6 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(
-	mainMod .. " + M",
-	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
-)
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" })) --togglefloat
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu)) --app menu
@@ -325,6 +319,8 @@ hl.bind(
 --btop
 hl.bind("CONTROL + SHIFT + ESCAPE", hl.dsp.exec_cmd("kitty --class=btopstart -e btop"))
 
+--menu
+hl.bind(mainMod .. " + ALT + F4", hl.dsp.global("quickshell:power-menu"))
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
@@ -372,13 +368,13 @@ hl.window_rule({
 	match = { class = "hyprland-run" },
 
 	move = "20 monitor_h-120",
-	float = true,
+	float = false,
 })
 
 --Terminal windowrule
 hl.window_rule({
 	name = "Terminal-startup-preset",
-	match = { class = "kitty" },
+	match = { class = "kittypres" },
 	float = true,
 	size = "500 400",
 	opacity = "0.85 override 0.85 override", --
@@ -412,7 +408,7 @@ hl.window_rule({
 	match = { class = "^(ttyclock)$" },
 	size = "350 180",
 	float = true,
-	move = "20 20",
+	move = "20 35",
 })
 
 --yazi explorer windowrule
