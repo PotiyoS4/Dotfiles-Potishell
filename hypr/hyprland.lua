@@ -34,6 +34,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd("hyprpaper &")
 	hl.exec_cmd("qs > /dev/null 2>&1 &")
+	hl.exec_cmd("~/.config/Scripts/BatteryNotif.sh")
 end)
 
 -------------------------------
@@ -244,6 +245,7 @@ local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" })) --togglefloat
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu)) --app menu
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("rofi-bluetooth.sh"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo()) --cuts the window
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- moves down, dwindle only
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(browser)) -- browser
